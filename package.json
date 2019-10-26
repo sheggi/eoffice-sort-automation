@@ -1,0 +1,29 @@
+{
+  "name": "eoffice-sort-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/rest": "^16.34.0",
+    "chalk": "^2.4.2",
+    "clear": "^0.1.0",
+    "clui": "^0.3.6",
+    "configstore": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "figlet": "^1.2.4",
+    "inquirer": "^7.0.0",
+    "lodash": "^4.17.15",
+    "minimist": "^1.2.0",
+    "simple-git": "^1.126.0",
+    "touch": "^3.1.0"
+  }
+}

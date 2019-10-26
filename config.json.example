@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "directory": "D:\\Users\\Joel\\Downloads",
+  "filters": [
+    {
+      "@type": "FileConditionFilter",
+      "id": "txt-file-filter",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "\/\\.txt$\/"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "@type": "MoveToAction",
+      "id": "move-to-test",
+      "destination": "D:\\development\\eoffice-sort-automation\\local\\target"
+    }
+  ],
+  "rules": [
+    {
+      "filter": "txt-file-filter",
+      "action": "move-to-test"
+    }
+  ]
+}
