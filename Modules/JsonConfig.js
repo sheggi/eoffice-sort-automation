@@ -1,3 +1,5 @@
+const log = require('../lib/logger').prefix('json config');
+
 const config = require('../config.json');
 const _ = require('lodash');
 
@@ -87,12 +89,15 @@ class JsonConfig {
     const filters = this.getFilters();
 
 
-    return config.rules.map(rule => {
-      console.log('xxx', actions[rule.action], filters[rule.filter], rule);
+    const rules = config.rules.map(rule => {
       return (new Rule())
         .setFilter(filters[rule.filter])
         .setAction(actions[rule.action])
-    })
+    });
+
+    log('getRules', actions, filters, JSON.stringify(rules, null, 2))
+
+    return rules;
   }
 
   getAutomata() {

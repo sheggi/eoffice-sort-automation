@@ -4,6 +4,7 @@ const inquirer = require('inquirer');
 const chalk = require('chalk');
 
 const log = require('../lib/logger').prefix('auto');
+const println = require('../lib/println');
 
 module.exports = class Automation {
   constructor() {
@@ -22,7 +23,7 @@ module.exports = class Automation {
   }
 
   run() {
-    log(`looking for files in ${chalk.yellow(this.directory)}`);
+    println(`looking for files in ${chalk.yellow(this.directory)}`);
 
     return fs.readdir(this.directory)
       .then(files => {
@@ -53,7 +54,7 @@ module.exports = class Automation {
         return files.reduce(async (previousPromise, file) => {
           await previousPromise;
 
-          log(`handle file ${chalk.yellow(file.name)}`);
+          println(`handle file ${chalk.yellow(file.name)}`);
 
           const rule = this.rules.reduce((prev, rule) => {
             return prev || rule.filter.match(file) ? rule : null;
@@ -69,7 +70,7 @@ module.exports = class Automation {
           const answer = await inquirer.prompt({
             type: 'confirm',
             name: 'do',
-            message: `auto: do you want to handle (${rule.action.name})`
+            message: `do you want to apply (${rule.action['@type']}):\n  ${rule.action.getDescription(file)})\n `
           });
           if (answer.do) {
             return rule.action.do(file);
@@ -79,7 +80,7 @@ module.exports = class Automation {
         }, Promise.resolve());
       })
       .then(() => {
-        log('automation finished')
+        println(chalk.green('all files handled!'));
       });
   }
 };

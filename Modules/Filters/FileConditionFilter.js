@@ -14,7 +14,8 @@ module.exports = class FilterConditionFilter extends Model {
       process.exit(1);
     }
     if(typeof condition.regexp !== 'object' || condition.regexp.constructor.name !== 'RegExp') {
-      condition.regexp = new RegExp(condition.regexp)
+      condition.regexp = new RegExp(condition.regexp);
+      log('converted regexp', condition.regexp)
     }
     this.conditions.push(condition);
     return this;
