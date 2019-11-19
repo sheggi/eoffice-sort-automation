@@ -90,12 +90,12 @@ class JsonConfig {
 
 
     const rules = config.rules.map(rule => {
-      return (new Rule())
+      return (new Rule(rule.name || rule.filter + '&' + rule.action))
         .setFilter(filters[rule.filter])
         .setAction(actions[rule.action])
     });
 
-    log('getRules', actions, filters, JSON.stringify(rules, null, 2))
+    log('getRules', actions, filters, ...rules)
 
     return rules;
   }

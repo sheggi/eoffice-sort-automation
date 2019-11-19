@@ -9,11 +9,11 @@ module.exports = class FilterConditionFilter extends Model {
   }
 
   addCondition(condition) {
-    if(!condition || !condition.property || !condition.regexp) {
+    if (!condition || !condition.property || !condition.regexp) {
       console.error('invalid condition', condition);
       process.exit(1);
     }
-    if(typeof condition.regexp !== 'object' || condition.regexp.constructor.name !== 'RegExp') {
+    if (typeof condition.regexp !== 'object' || condition.regexp.constructor.name !== 'RegExp') {
       condition.regexp = new RegExp(condition.regexp);
       log('converted regexp', condition.regexp)
     }
@@ -26,7 +26,7 @@ module.exports = class FilterConditionFilter extends Model {
       return false;
     }
     return this.conditions.reduce((previous, condition) => {
-      log(`matching ${file[condition.property]} with ${condition.regexp}`);
+      log(`matching file with ${condition.regexp} resulting in ${!!(file[condition.property] + '').match(condition.regexp)}`);
       return previous && (file[condition.property] + '').match(condition.regexp);
     }, true);
   }

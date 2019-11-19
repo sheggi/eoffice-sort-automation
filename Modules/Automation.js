@@ -56,25 +56,36 @@ module.exports = class Automation {
 
           println(`handle file ${chalk.yellow(file.name)}`);
 
-          const rule = this.rules.reduce((prev, rule) => {
-            return prev || rule.filter.match(file) ? rule : null;
+          let rule = this.rules.reduce(async (prev, rule) => {
+            prev = await prev;
+            if (prev) return prev;
+            let match = rule.filter.match(file);
+            let confirmed = false;
+
+            log(`checking rule ${chalk.yellow(rule.name)}: ${match?'':'not '}matched`);
+
+            if (match) {
+              const answer = await inquirer.prompt({
+                type: 'confirm',
+                name: 'do',
+                message: `do you want to apply (${rule.action['@type']}):\n  ${rule.action.getDescription(file)})\n `
+              });
+              if (answer.do) {
+                confirmed = await rule.action.do(file);
+              }
+            }
+
+            return match && confirmed ? rule : null;
           }, null);
+
+          rule = await rule;
 
           if (!rule) {
             log(`no rule found - continue`);
             return Promise.resolve();
           }
 
-          log(`found rule (${rule.name})`);
-
-          const answer = await inquirer.prompt({
-            type: 'confirm',
-            name: 'do',
-            message: `do you want to apply (${rule.action['@type']}):\n  ${rule.action.getDescription(file)})\n `
-          });
-          if (answer.do) {
-            return rule.action.do(file);
-          }
+          log(`found rule ${chalk.yellow(rule.name)}`);
 
           return Promise.resolve();
         }, Promise.resolve());

@@ -22,6 +22,10 @@ module.exports = class MoveToAction extends Model {
     const source = file.file;
     const target = path.join(this.destination, file.name);
     log(`moving from ${source} to ${target}`);
-    return fs.rename(source, target).then(() => { log(`moved ${target}`) });
+    return fs.rename(source, target)
+      .then(() => {
+        log(`moved ${target}`);
+        return true;
+      });
   }
 };
