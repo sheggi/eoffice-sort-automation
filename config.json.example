@@ -8,7 +8,7 @@
       "condition": [
         {
           "property": "name",
-          "regexp": "\/\\.txt$\/"
+          "regexp": "\\.txt$"
         }
       ]
     }

@@ -54,10 +54,15 @@ class JsonConfig {
     }
   }
 
+  _resolveWithEnv(original){
+    if(typeof original !== 'string') return original;
+    return original.replace(/%([^%]+)%/g, (_,n) => process.env[n]);
+  }
+
   getDirectory() {
     this.checkVersion();
 
-    return config.directory
+    return this._resolveWithEnv(config.directory);
   }
 
   getActions() {
@@ -65,6 +70,10 @@ class JsonConfig {
 
     return config.actions
       .map(item => hydrate('Actions', item, this.actionCache))
+      .map(action => {
+        action.destination = this._resolveWithEnv(action.destination);
+        return action;
+      })
       .reduce((acc, instance) => {
         acc[instance.id] = instance;
         return acc;
