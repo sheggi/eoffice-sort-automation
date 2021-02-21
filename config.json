@@ -71,6 +71,16 @@
           "regexp": "^.*\\_18754653\\_2020.*\\.pdf$"
         }
       ]
+    },
+    {
+      "@type": "FileConditionFilter",
+      "id": "axa-document-filter-2021",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "^.*\\_18754653\\_2021.*\\.pdf$"
+        }
+      ]
     }
   ],
   "actions": [
@@ -108,6 +118,11 @@
       "@type": "MoveToAction",
       "id": "move-to-axa-2020-documents",
       "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2020"
+    },
+    {
+      "@type": "MoveToAction",
+      "id": "move-to-axa-2021-documents",
+      "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2021"
     }
   ],
   "rules": [
@@ -145,6 +160,11 @@
       "name": "AXA file automation",
       "filter": "axa-document-filter-2020",
       "action": "move-to-axa-2020-documents"
+    },
+    {
+      "name": "AXA file automation",
+      "filter": "axa-document-filter-2021",
+      "action": "move-to-axa-2021-documents"
     }
   ]
 }
