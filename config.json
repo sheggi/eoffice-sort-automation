@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "directory": "%Downloads%",
+  "filters": [
+    {
+      "@type": "FileConditionFilter",
+      "id": "eki-documents-filter-2019",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "2019.*[\\d]{10}\\-(Kontoauszug|Einzelanzeige)\\.pdf$"
+        }
+      ]
+    },
+    {
+      "@type": "FileConditionFilter",
+      "id": "eki-documents-filter-2020",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "^2020.*[\\d]{14}\\-(Kontoauszug|Einzelanzeige|Kontoabschluss_auszug|Zins-_Kapitalausweis|Private Banking Report)\\.pdf$"
+        }
+      ]
+    },
+    {
+      "@type": "FileConditionFilter",
+      "id": "eki-documents-filter-2021",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "^2021.*[\\d]{14}\\-(Kontoauszug|Einzelanzeige|Kontoabschluss_auszug|Zins-_Kapitalausweis|Private Banking Report)\\.pdf$"
+        }
+      ]
+    },
+    {
+      "@type": "FileConditionFilter",
+      "id": "viseca-documents-filter",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "^visebpp"
+        }
+      ]
+    },
+    {
+      "@type": "FileConditionFilter",
+      "id": "visana-leistungsabrechnung-filter-2020",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "^Leistungsabrechnung.*\\_2020.*\\.pdf$"
+        }
+      ]
+    },
+    {
+      "@type": "FileConditionFilter",
+      "id": "visana-praemienrechnung-filter-2020",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "^Praemienrechnung.*\\_2020.*\\.pdf$"
+        }
+      ]
+    },
+    {
+      "@type": "FileConditionFilter",
+      "id": "axa-document-filter-2020",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "^.*\\_18754653\\_2020.*\\.pdf$"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "@type": "MoveToAction",
+      "id": "move-to-eki-2019-documents",
+      "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2019"
+    },
+    {
+      "@type": "MoveToAction",
+      "id": "move-to-eki-2020-documents",
+      "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2020"
+    },
+    {
+      "@type": "MoveToAction",
+      "id": "move-to-eki-2021-documents",
+      "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2021"
+    },
+    {
+      "@type": "MoveToAction",
+      "id": "move-to-viseca-documents",
+      "destination": "%GoogleDrive%\\Service\\Finanzen\\Viseca"
+    },
+    {
+      "@type": "MoveToAction",
+      "id": "move-to-visana-leistungsabrechnung",
+      "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Leistungsabrechnung\\2020"
+    },
+    {
+      "@type": "MoveToAction",
+      "id": "move-to-visana-praemienrechnung",
+      "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Prämienrechnung\\2020"
+    },
+    {
+      "@type": "MoveToAction",
+      "id": "move-to-axa-2020-documents",
+      "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2020"
+    }
+  ],
+  "rules": [
+    {
+      "name": "EKI file automation",
+      "filter": "eki-documents-filter-2019",
+      "action": "move-to-eki-2019-documents"
+    },
+    {
+      "name": "EKI file automation",
+      "filter": "eki-documents-filter-2020",
+      "action": "move-to-eki-2020-documents"
+    },
+    {
+      "name": "EKI file automation",
+      "filter": "eki-documents-filter-2021",
+      "action": "move-to-eki-2021-documents"
+    },
+    {
+      "name": "Viseca file automation",
+      "filter": "viseca-documents-filter",
+      "action": "move-to-viseca-documents"
+    },
+    {
+      "name": "Visana Leistungsabrechnung file automation",
+      "filter": "visana-leistungsabrechnung-filter-2020",
+      "action": "move-to-visana-leistungsabrechnung"
+    },
+    {
+      "name": "Viseca Prämienrechnung file automation",
+      "filter": "visana-praemienrechnung-filter-2020",
+      "action": "move-to-visana-praemienrechnung"
+    },
+    {
+      "name": "AXA file automation",
+      "filter": "axa-document-filter-2020",
+      "action": "move-to-axa-2020-documents"
+    }
+  ]
+}

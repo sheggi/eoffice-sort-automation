@@ -5,5 +5,4 @@ node_modules
 
 local
 
-config.json
 .env
