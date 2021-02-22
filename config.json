@@ -64,6 +64,26 @@
     },
     {
       "@type": "FileConditionFilter",
+      "id": "visana-leistungsabrechnung-filter-2021",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "^Leistungsabrechnung.*\\_2021.*\\.pdf$"
+        }
+      ]
+    },
+    {
+      "@type": "FileConditionFilter",
+      "id": "visana-praemienrechnung-filter-2021",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "^Praemienrechnung.*\\_2021.*\\.pdf$"
+        }
+      ]
+    },
+    {
+      "@type": "FileConditionFilter",
       "id": "axa-document-filter-2020",
       "condition": [
         {
@@ -116,6 +136,16 @@
     },
     {
       "@type": "MoveToAction",
+      "id": "move-to-visana-leistungsabrechnung-2021",
+      "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Leistungsabrechnung\\2021"
+    },
+    {
+      "@type": "MoveToAction",
+      "id": "move-to-visana-praemienrechnung-2021",
+      "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Prämienrechnung\\2021"
+    },
+    {
+      "@type": "MoveToAction",
       "id": "move-to-axa-2020-documents",
       "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2020"
     },
@@ -152,9 +182,19 @@
       "action": "move-to-visana-leistungsabrechnung"
     },
     {
-      "name": "Viseca Prämienrechnung file automation",
+      "name": "Visana Prämienrechnung file automation",
       "filter": "visana-praemienrechnung-filter-2020",
       "action": "move-to-visana-praemienrechnung"
+    },
+    {
+      "name": "Visana Leistungsabrechnung file automation",
+      "filter": "visana-leistungsabrechnung-filter-2021",
+      "action": "move-to-visana-leistungsabrechnung-2021"
+    },
+    {
+      "name": "Visana Prämienrechnung file automation",
+      "filter": "visana-praemienrechnung-filter-2021",
+      "action": "move-to-visana-praemienrechnung-2021"
     },
     {
       "name": "AXA file automation",
