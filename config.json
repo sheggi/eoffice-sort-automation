@@ -34,6 +34,26 @@
     },
     {
       "@type": "FileConditionFilter",
+      "id": "bekb-documents-filter-2020",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "^[\\d]{11}-2020[\\d]{4}\\-(Kontoauszug|Einzelanzeige|Kontoabschluss|Steuerbescheinigung)-[\\d]{6}\\.pdf$"
+        }
+      ]
+    },
+    {
+      "@type": "FileConditionFilter",
+      "id": "bekb-documents-filter-2021",
+      "condition": [
+        {
+          "property": "name",
+          "regexp": "^[\\d]{11}-2021[\\d]{4}\\-(Kontoauszug|Einzelanzeige|Kontoabschluss|Steuerbescheinigung)-[\\d]{6}\\.pdf$"
+        }
+      ]
+    },
+    {
+      "@type": "FileConditionFilter",
       "id": "viseca-documents-filter",
       "condition": [
         {
@@ -116,6 +136,16 @@
     },
     {
       "@type": "MoveToAction",
+      "id": "move-to-bekb-2020-documents",
+      "destination": "%GoogleDrive%\\Service\\Finanzen\\BEKB\\2020"
+    },
+    {
+      "@type": "MoveToAction",
+      "id": "move-to-bekb-2021-documents",
+      "destination": "%GoogleDrive%\\Service\\Finanzen\\BEKB\\2021"
+    },
+    {
+      "@type": "MoveToAction",
       "id": "move-to-eki-2021-documents",
       "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2021"
     },
@@ -170,6 +200,16 @@
       "name": "EKI file automation",
       "filter": "eki-documents-filter-2021",
       "action": "move-to-eki-2021-documents"
+    },
+    {
+      "name": "BEKB file automation",
+      "filter": "bekb-documents-filter-2020",
+      "action": "move-to-bekb-2020-documents"
+    },
+    {
+      "name": "BEKB file automation",
+      "filter": "bekb-documents-filter-2021",
+      "action": "move-to-bekb-2021-documents"
     },
     {
       "name": "Viseca file automation",
