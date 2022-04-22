@@ -21,7 +21,7 @@ export default class MoveToAction extends Model {
     const target = path.join(this.destination, file.name);
 
     await new Promise((resolve, reject) => {
-      mv(source, target, (err) => err ? reject(err) : resolve())
+      mv(source, target, { clobber: false }, (err) => err ? reject(err) : resolve())
     })
 
     return true;
