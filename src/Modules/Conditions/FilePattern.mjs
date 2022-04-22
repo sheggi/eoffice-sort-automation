@@ -1,4 +1,4 @@
-import Model from '../Model.js'
+import Model from '../Model.mjs'
 
 export default class FilePattern extends Model {
   constructor() {

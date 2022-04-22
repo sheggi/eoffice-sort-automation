@@ -3,7 +3,7 @@ import path from 'path'
 import inquirer from 'inquirer'
 import chalk from 'chalk'
 
-import { println } from '../lib/println.js'
+import { println } from '../lib/println.mjs'
 import { ray } from 'node-ray'
 
 export default class Automation {

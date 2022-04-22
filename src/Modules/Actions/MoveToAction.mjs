@@ -2,7 +2,7 @@ import path from 'path'
 import chalk from 'chalk'
 import mv from 'mv'
 
-import Model from '../Model.js'
+import Model from '../Model.mjs'
 
 export default class MoveToAction extends Model {
   setDestination(destination) {

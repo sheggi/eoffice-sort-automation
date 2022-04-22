@@ -1,14 +1,14 @@
 import config from '../../config.json' assert { type: 'json' }
 import _ from 'lodash'
 
-import Rule from './Rule.js'
+import Rule from './Rule.mjs'
 
 const hydrate = async function (Model, raw, cache) {
   const type = raw['@type'];
 
   let Class = cache[type];
   if (!Class) {
-    Class = cache[type] = (await import(`./${Model}/${type}.js`)).default; // todo sanitation
+    Class = cache[type] = (await import(`./${Model}/${type}.mjs`)).default; // todo sanitation
   }
   if (!Class) {
     console.error(`Class ./${Model}/${type} not found!`);
