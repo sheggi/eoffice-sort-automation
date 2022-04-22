@@ -4,7 +4,6 @@ import inquirer from 'inquirer'
 import chalk from 'chalk'
 
 import { println } from '../lib/println.mjs'
-import { ray } from 'node-ray'
 
 export default class Automation {
   constructor() {
@@ -47,8 +46,6 @@ export default class Automation {
     }, []);
 
     this.files = files
-
-    ray(this.files)
   }
 
   async handleFilesCli() {
