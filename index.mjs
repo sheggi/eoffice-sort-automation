@@ -8,13 +8,16 @@ import inquirer from 'inquirer'
 import println from './src/lib/println.mjs'
 import jsonConfig from './src/Modules/JsonConfig.mjs'
 import Automata from './src/Modules/Automation.mjs'
+import emphasize, { use } from './src/lib/emphasize.mjs';
+
 
 // start cli
 
 clear();
 
+use(text => chalk.yellow(text))
 console.log(
-  chalk.yellow(
+  emphasize(
     figlet.textSync('Sort Automata', { horizontalLayout: 'full' })
   )
 );
@@ -26,7 +29,7 @@ const automata = (new Automata())
   .setRules(await jsonConfig.getRules());
 
 
-println(`looking for files in ${chalk.yellow(automata.directory)}`);
+println(`looking for files in ${emphasize(automata.directory)}`);
 await automata.readWorkingDir()
 
 // act

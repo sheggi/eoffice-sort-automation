@@ -1,5 +1,5 @@
 import path from 'path'
-import chalk from 'chalk'
+import emphasize from '../../lib/emphasize.mjs';
 import mv from 'mv'
 
 import Model from '../Model.mjs'
@@ -10,10 +10,10 @@ export default class MoveToAction extends Model {
     return this;
   }
 
-  getDescription(fileStat, options = { color: false }) {
+  getDescription(fileStat) {
     const source = fileStat.file;
     const target = path.join(this.destination, fileStat.name);
-    return `move file from ${options.color ? chalk.yellow(source) : source} to ${options.color ? chalk.yellow(target) : target}`
+    return `move file from ${emphasize(source) } to ${emphasize(target)}`
   }
 
   async do(fileStat) {
