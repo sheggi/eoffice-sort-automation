@@ -74,6 +74,7 @@ class JsonConfig {
         const action = await hydrate('Actions', rule.action, this.actionsCache)
 
         return await (new Rule(rule.name))
+          .setId(rule.id)
           .setConditions(conditions)
           .setAction(action)
       })

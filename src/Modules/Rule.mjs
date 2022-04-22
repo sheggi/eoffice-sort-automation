@@ -5,6 +5,11 @@ export default class Rule {
     this.action = null;
   }
 
+  setId(id) {
+    this.id = id;
+    return this;
+  }
+
   setConditions(conditions) {
     this.conditions = conditions;
     return this;

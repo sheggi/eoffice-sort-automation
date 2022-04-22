@@ -2,15 +2,24 @@ import Automation from "~~/src/Modules/Automation.mjs"
 import JsonConfig from "~~/src/Modules/JsonConfig.mjs"
 
 export default defineEventHandler(async (event) => {
+  console.log(event.context.params.rule)
+
+  const body = await useBody(event.req)
+
   const automata = (new Automation())
     .setWorkingDir(await JsonConfig.getDirectory())
     .setRules(await JsonConfig.getRules());
 
 
   await automata.readWorkingDir()
-  const actionables = await automata.getActionables()
 
-  return {
-    actionables
+  try {
+    const result = await automata.handleActionable(body)
+
+    return { success: true, result }
+  } catch (error) {
+    event.res.statusCode = 400
+    
+    return { error }
   }
 })

@@ -9,7 +9,7 @@ export default class Automation {
   constructor() {
     this.rules = [];
     this.directory = '';
-    this.files = null;
+    this.fileStats = null;
     this.actionables = null;
   }
 
@@ -45,15 +45,15 @@ export default class Automation {
       return acc;
     }, []);
 
-    this.files = files
+    this.fileStats = files
   }
 
   async handleFilesCli() {
-    if (!this.files) throw new Error('read working directory first')
+    if (!this.fileStats) throw new Error('read working directory first')
 
     // handle each file sequentialy
     await Promise.all(
-      this.files.map(async (fileStat) => {
+      this.fileStats.map(async (fileStat) => {
 
         println(`handle file ${chalk.yellow(fileStat.name)}`);
 
@@ -67,7 +67,7 @@ export default class Automation {
             const answer = await inquirer.prompt({
               type: 'confirm',
               name: 'do',
-              message: `do you want to apply (${rule.name}):\n  ${rule.action.getDescription(fileStat, {color: true})})\n `
+              message: `do you want to apply (${rule.name}):\n  ${rule.action.getDescription(fileStat, { color: true })})\n `
             });
             if (answer.do) {
               confirmed = await rule.action.do(fileStat);
@@ -89,23 +89,32 @@ export default class Automation {
   }
 
   async getActionables() {
-    if (!this.files) throw new Error('read working directory first')
+    if (!this.fileStats) throw new Error('read working directory first')
 
-    // handle each file sequentialy
-    return this.files.flatMap(fileStat =>
+    return this.fileStats.flatMap(fileStat =>
       this.rules
-      .filter(rule =>
-        rule.conditions.reduce((prev, condition) =>
-          prev || condition.match(fileStat), false)
-      )
-      .map(rule => ({
-        id: rule.id,
-        file:{
-          name: fileStat.name
-        },
-        name: rule.name,
-        action: rule.action.getDescription(fileStat)
-      }))
+        .filter(rule =>
+          rule.conditions.reduce((prev, condition) =>
+            prev || condition.match(fileStat), false)
+        )
+        .map(rule => ({
+          id: rule.id,
+          file: {
+            name: fileStat.name
+          },
+          name: rule.name,
+          action: rule.action.getDescription(fileStat)
+        }))
     )
+  }
+
+  async handleActionable(actionable) {
+
+    const fileStat = this.fileStats.find(fileStat => !actionable || fileStat.name === actionable.file.name)
+    const rule = this.rules.find(rule => rule.id === actionable.id)
+
+    await Promise.resolve();
+
+    return await rule.action.do(fileStat);
   }
 };
