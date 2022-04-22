@@ -8,12 +8,17 @@
   },
   "scripts": {
     "test": "node test-env.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "nuxt": "3.0.0-rc.1",
     "@octokit/rest": "^16.43.2",
     "chalk": "^2.4.2",
     "clear": "^0.1.0",
