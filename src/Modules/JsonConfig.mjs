@@ -35,6 +35,8 @@ class JsonConfig {
   constructor() {
     this.conditionsCache = {};
     this.actionsCache = {};
+
+    this.checkVersion();
   }
 
   checkVersion() {

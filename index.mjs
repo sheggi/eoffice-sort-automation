@@ -17,10 +17,6 @@ console.log(
   )
 );
 
-
-jsonConfig.checkVersion();
-
-
 const automata = (new Automata())
   .setWorkingDir(await jsonConfig.getDirectory())
   .setRules(await jsonConfig.getRules());
