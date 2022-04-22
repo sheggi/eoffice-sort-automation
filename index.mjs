@@ -31,7 +31,7 @@ await automata.readWorkingDir()
 
 // act
 
-const actionables = await automata.getActionables({ color: true })
+const actionables = await automata.findActionables({ color: true })
 
 await Promise.all(actionables.map(async (actionable) => {
   println(`handle file ${chalk.yellow(actionable.file.name)}`);

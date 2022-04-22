@@ -42,7 +42,7 @@ export default class Automation {
     this.fileStats = files
   }
 
-  async getActionables() {
+  async findActionables() {
     if (!this.fileStats) throw new Error('read working directory first')
 
     return this.fileStats.flatMap(fileStat =>
