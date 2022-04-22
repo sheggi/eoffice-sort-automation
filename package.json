@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "node test-env.js",
+    "test": "node src/test-env.js",
     "start": "node index.js",
     "build": "nuxt build",
     "dev": "nuxt dev",

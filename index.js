@@ -1,11 +1,10 @@
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 
 const chalk = require('chalk');
 const clear = require('clear');
 const figlet = require('figlet');
 
-const jsonConfig = require('./Modules/JsonConfig');
+const jsonConfig = require('./src/Modules/JsonConfig');
 
 // start cli
 

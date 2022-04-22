@@ -1,6 +1,6 @@
 const log = require('../lib/logger').prefix('json config');
 
-const config = require('../config.json');
+const config = require('../../config.json');
 const _ = require('lodash');
 
 const Automata = require('./Automation');
