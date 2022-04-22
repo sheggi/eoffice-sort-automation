@@ -14,7 +14,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2019"
-      }
+      },
+      "id": "move-to-eki-2019-documents"
     },
     {
       "name": "EKI file automation",
@@ -28,7 +29,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2020"
-      }
+      },
+      "id": "move-to-eki-2020-documents"
     },
     {
       "name": "EKI file automation",
@@ -42,7 +44,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2021"
-      }
+      },
+      "id": "move-to-eki-2021-documents"
     },
     {
       "name": "BEKB file automation",
@@ -56,7 +59,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Finanzen\\BEKB\\2020"
-      }
+      },
+      "id": "move-to-bekb-2020-documents"
     },
     {
       "name": "BEKB file automation",
@@ -70,7 +74,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Finanzen\\BEKB\\2021"
-      }
+      },
+      "id": "move-to-bekb-2021-documents"
     },
     {
       "name": "Viseca file automation",
@@ -84,7 +89,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Finanzen\\Viseca"
-      }
+      },
+      "id": "move-to-viseca-documents"
     },
     {
       "name": "Visana Leistungsabrechnung file automation",
@@ -98,7 +104,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Leistungsabrechnung\\2020"
-      }
+      },
+      "id": "move-to-visana-leistungsabrechnung"
     },
     {
       "name": "Visana Prämienrechnung file automation",
@@ -112,7 +119,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Prämienrechnung\\2020"
-      }
+      },
+      "id": "move-to-visana-praemienrechnung"
     },
     {
       "name": "Visana Leistungsabrechnung file automation",
@@ -126,7 +134,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Leistungsabrechnung\\2021"
-      }
+      },
+      "id": "move-to-visana-leistungsabrechnung-2021"
     },
     {
       "name": "Visana Prämienrechnung file automation",
@@ -140,7 +149,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Prämienrechnung\\2021"
-      }
+      },
+      "id": "move-to-visana-praemienrechnung-2021"
     },
     {
       "name": "AXA file automation",
@@ -154,7 +164,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2020"
-      }
+      },
+      "id": "move-to-axa-2020-documents"
     },
     {
       "name": "AXA file automation",
@@ -168,7 +179,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2021"
-      }
+      },
+      "id": "move-to-axa-2021-documents"
     },
     {
       "name": "Test automation",
@@ -182,7 +194,8 @@
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%"
-      }
+      },
+      "id": "test-id"
     }
   ]
 }

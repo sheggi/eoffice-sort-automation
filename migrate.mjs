@@ -16,7 +16,10 @@ config.rules = legacy.rules.map(rule => {
         return condition
     })
     newRule.action = legacy.actions.find(action => action.id === rule.action)
+
+    newRule.id = newRule.action.id
     delete newRule.action.id
+
     return newRule
 })
 

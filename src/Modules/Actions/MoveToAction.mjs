@@ -10,15 +10,15 @@ export default class MoveToAction extends Model {
     return this;
   }
 
-  getDescription(file) {
-    const source = file.file;
-    const target = path.join(this.destination, file.name);
-    return `move file from ${chalk.yellow(source)} to ${chalk.yellow(target)}`
+  getDescription(fileStat, options = { color: false }) {
+    const source = fileStat.file;
+    const target = path.join(this.destination, fileStat.name);
+    return `move file from ${options.color ? chalk.yellow(source) : source} to ${options.color ? chalk.yellow(target) : target}`
   }
 
-  async do(file) {
-    const source = file.file;
-    const target = path.join(this.destination, file.name);
+  async do(fileStat) {
+    const source = fileStat.file;
+    const target = path.join(this.destination, fileStat.name);
 
     await new Promise((resolve, reject) => {
       mv(source, target, { clobber: false }, (err) => err ? reject(err) : resolve())

@@ -70,7 +70,7 @@ export default class Automation {
             const answer = await inquirer.prompt({
               type: 'confirm',
               name: 'do',
-              message: `do you want to apply (${rule.name}):\n  ${rule.action.getDescription(fileStat)})\n `
+              message: `do you want to apply (${rule.name}):\n  ${rule.action.getDescription(fileStat, {color: true})})\n `
             });
             if (answer.do) {
               confirmed = await rule.action.do(fileStat);
@@ -89,5 +89,26 @@ export default class Automation {
     );
 
     println(chalk.green('all files handled!'));
+  }
+
+  async getActionables() {
+    if (!this.files) throw new Error('read working directory first')
+
+    // handle each file sequentialy
+    return this.files.flatMap(fileStat =>
+      this.rules
+      .filter(rule =>
+        rule.conditions.reduce((prev, condition) =>
+          prev || condition.match(fileStat), false)
+      )
+      .map(rule => ({
+        id: rule.id,
+        file:{
+          name: fileStat.name
+        },
+        name: rule.name,
+        action: rule.action.getDescription(fileStat)
+      }))
+    )
   }
 };
