@@ -1,12 +1,10 @@
-const log = require('../../lib/logger').prefix('move action');
+import path from 'path'
+import chalk from 'chalk'
+import mv from 'mv'
 
-const fs = require('fs').promises;
-const path = require('path');
-const chalk = require('chalk');
+import Model from '../Model.js'
 
-const Model = require('../Model');
-
-module.exports = class MoveToAction extends Model {
+export default class MoveToAction extends Model {
   setDestination(destination) {
     this.destination = destination;
     return this;
@@ -18,14 +16,14 @@ module.exports = class MoveToAction extends Model {
     return `move file from ${chalk.yellow(source)} to ${chalk.yellow(target)}`
   }
 
-  do(file) {
+  async do(file) {
     const source = file.file;
     const target = path.join(this.destination, file.name);
-    log(`moving from ${source} to ${target}`);
-    return fs.rename(source, target)
-      .then(() => {
-        log(`moved ${target}`);
-        return true;
-      });
+
+    await new Promise((resolve, reject) => {
+      mv(source, target, (err) => err ? reject(err) : resolve())
+    })
+
+    return true;
   }
 };

@@ -1,14 +1,12 @@
-const log = require('../lib/logger').prefix('rule');
-
-module.exports = class Rule {
+export default class Rule {
   constructor(name = null) {
     this.name = name || 'rule';
-    this.filter = null;
+    this.conditions = null;
     this.action = null;
   }
 
-  setFilter(filter) {
-    this.filter = filter;
+  setConditions(conditions) {
+    this.conditions = conditions;
     return this;
   }
 

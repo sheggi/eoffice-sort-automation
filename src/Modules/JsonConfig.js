@@ -1,23 +1,19 @@
-const log = require('../lib/logger').prefix('json config');
+import config from '../../config.json' assert { type: 'json' }
+import _ from 'lodash'
 
-const config = require('../../config.json');
-const _ = require('lodash');
+import Rule from './Rule.js'
 
-const Automata = require('./Automation');
-const Rule = require('./Rule');
-
-const hydrate = function (Model, raw, cache) {
+const hydrate = async function (Model, raw, cache) {
   const type = raw['@type'];
-  const name = raw['@name'];
 
   let Class = cache[type];
   if (!Class) {
-    Class = cache[type] = require(`./${Model}/${type}`); // todo sanitation
+    Class = cache[type] = (await import(`./${Model}/${type}.js`)).default; // todo sanitation
   }
   if (!Class) {
     console.error(`Class ./${Model}/${type} not found!`);
   }
-  let instance = new Class(name);
+  let instance = new Class();
 
   const setProperty = (prop, value, list = false) => {
     const fn = (list ? 'add' : 'set') + _.upperFirst(prop);
@@ -37,26 +33,24 @@ const hydrate = function (Model, raw, cache) {
 
 class JsonConfig {
   constructor() {
-    this.actionCache = {};
-    this.filterCache = {};
+    this.conditionsCache = {};
+    this.actionsCache = {};
   }
 
   checkVersion() {
     if (
       !config ||
-      config.version !== 1 ||
-      !_.isArray(config.actions) ||
-      !_.isArray(config.filters) ||
+      config.version !== 2 ||
       !_.isArray(config.rules)
     ) {
-      console.error('expected config version is 1 got ' + (config || {}).version);
+      console.error('expected config version is 2 got ' + (config || {}).version);
       process.exit(1)
     }
   }
 
-  _resolveWithEnv(original){
-    if(typeof original !== 'string') return original;
-    return original.replace(/%([^%]+)%/g, (_,n) => process.env[n]);
+  _resolveWithEnv(original) {
+    if (typeof original !== 'string') return original;
+    return original.replace(/%([^%]+)%/g, (_, n) => process.env[n]);
   }
 
   getDirectory() {
@@ -65,57 +59,26 @@ class JsonConfig {
     return this._resolveWithEnv(config.directory);
   }
 
-  getActions() {
+  async getRules() {
     this.checkVersion();
 
-    return config.actions
-      .map(item => hydrate('Actions', item, this.actionCache))
-      .map(action => {
-        action.destination = this._resolveWithEnv(action.destination);
-        return action;
+    const rules = await Promise.all(
+      config.rules.map(async (rule) => {
+        const conditions = await Promise.all(rule.conditions.map(
+          async (condition) => await hydrate('Conditions', condition, this.conditionsCache)
+        ))
+        if (rule.action.destination)
+          rule.action.destination = this._resolveWithEnv(rule.action.destination)
+        const action = await hydrate('Actions', rule.action, this.actionsCache)
+
+        return await (new Rule(rule.name))
+          .setConditions(conditions)
+          .setAction(action)
       })
-      .reduce((acc, instance) => {
-        acc[instance.id] = instance;
-        return acc;
-      }, {})
-  }
-
-  getFilters() {
-    this.checkVersion();
-
-    return config.filters
-      .map(item => hydrate('Filters', item, this.filterCache))
-      .reduce((acc, instance) => {
-        acc[instance.id] = instance;
-        return acc;
-      }, {})
-  }
-
-  getRules() {
-    this.checkVersion();
-
-    const actions = this.getActions();
-    const filters = this.getFilters();
-
-
-    const rules = config.rules.map(rule => {
-      return (new Rule(rule.name || rule.filter + '&' + rule.action))
-        .setFilter(filters[rule.filter])
-        .setAction(actions[rule.action])
-    });
-
-    log('getRules', actions, filters, ...rules)
+    );
 
     return rules;
   }
-
-  getAutomata() {
-    this.checkVersion();
-
-    return (new Automata())
-      .setWorkingDir(this.getDirectory())
-      .setRules(this.getRules());
-  }
 }
 
-module.exports = new JsonConfig();
+export default new JsonConfig();

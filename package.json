@@ -2,10 +2,12 @@
   "name": "eoffice-sort-automation",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "node src/test-env.js",
-    "start": "node index.js",
+    "test": "node src/test-env.cjs",
+    "cli": "node index.js",
+    "migrate": "node migrate.js",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -15,7 +17,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nuxt": "3.0.0-rc.1",
     "@octokit/rest": "^16.43.2",
     "chalk": "^2.4.2",
     "clear": "^0.1.0",
@@ -26,7 +27,12 @@
     "inquirer": "^7.3.3",
     "lodash": "^4.17.21",
     "minimist": "^1.2.5",
+    "mv": "^2.1.1",
+    "nuxt": "3.0.0-rc.1",
     "simple-git": "^3.3.0",
     "touch": "^3.1.0"
+  },
+  "devDependencies": {
+    "node-ray": "^1.18.0"
   }
 }

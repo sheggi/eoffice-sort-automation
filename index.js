@@ -1,10 +1,12 @@
-require('dotenv').config();
+import dotenv from 'dotenv'
+dotenv.config();
 
-const chalk = require('chalk');
-const clear = require('clear');
-const figlet = require('figlet');
+import chalk from 'chalk'
+import clear from 'clear'
+import figlet from 'figlet'
 
-const jsonConfig = require('./src/Modules/JsonConfig');
+import jsonConfig from './src/Modules/JsonConfig.js'
+import Automata from './src/Modules/Automation.js'
 
 // start cli
 
@@ -16,6 +18,16 @@ console.log(
   )
 );
 
-jsonConfig.getAutomata()
-  .run()
-  .then(() => process.exit(0));
+
+jsonConfig.checkVersion();
+
+
+const automata = (new Automata())
+  .setWorkingDir(await jsonConfig.getDirectory())
+  .setRules(await jsonConfig.getRules());
+
+
+await automata.readWorkingDir()
+await automata.handleFilesCli()
+
+process.exit(0);

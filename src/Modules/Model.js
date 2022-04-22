@@ -1,6 +1,6 @@
-const _ = require('lodash');
+import _ from 'lodash'
 
-module.exports = class Model {
+export default class Model {
   constructor() {
     this['@type'] = _.kebabCase(this.constructor.name);
     this.setId(this['@type'] + '-' + Date.now());
