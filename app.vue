@@ -12,7 +12,8 @@
       <button @click="findActionables" class=" text-blue-500 hover:text-blue-400">refresh</button>
       <div v-if="loading">loading ...</div>
       <Actionable v-else v-for="actionable in actionables" :actionable="actionable" :key="actionable.id" />
-      <div v-if="actionables.length === 0"> no actionables available </div>
+      <div v-if="actionables.length === 0 && !error"> no actionables available </div>
+      <div v-if="error" class="text-red-600">{{ error }}</div>
     </div>
   </div>
 </template>
@@ -22,12 +23,14 @@ import { onMounted } from 'vue';
 
 const actionables = ref([])
 const loading = ref(true)
+const error = ref(null)
 
 const findActionables = async () => {
   loading.value = true
   const data = await (await fetch('/api/actionables')).json()
 
-  actionables.value = data.actionables
+  actionables.value = data.actionables || []
+  error.value = data.error ? data : null
   loading.value = false
 }
 

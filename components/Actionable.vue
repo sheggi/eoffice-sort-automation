@@ -35,8 +35,8 @@ const confirm = async () => {
         })
         result.value = await response.json()
         status.value = response.status === 200 ? 'success' : 'error'
-    } catch (err) {
-        result.value = err
+    } catch (error) {
+        result.value = error
     }
 }
 
