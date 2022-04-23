@@ -92,6 +92,16 @@ class JsonConfig {
 
     return rules;
   }
+
+  getRaw() {
+    return config;
+  }
+
+  async setRaw(raw) {
+    config = raw
+
+    await fs.writeFile(__dirname + '/../../config.json', JSON.stringify(raw, null, 2))
+  }
 }
 
 export default new JsonConfig();

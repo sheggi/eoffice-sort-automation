@@ -181,7 +181,7 @@
         },
         "destination": "%GoogleDrive%/{{year}}//{{name}}"
       },
-      "version": 1650739550715,
+      "version": 1650748374027,
       "conditions": [
         {
           "@type": "FilePattern",

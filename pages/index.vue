@@ -9,7 +9,8 @@
  </pre>
 
     <div class="actionables">
-      <button @click="findActionables" class=" text-blue-500 hover:text-blue-400">refresh</button>
+      <button @click="findActionables" class="text-blue-500 hover:text-blue-400">🔍 refresh</button> | 
+      <NuxtLink to="config" class="text-blue-500 hover:text-blue-400">⚙️ config</NuxtLink>
       <div v-if="loading">loading ...</div>
       <Actionable v-else v-for="actionable in actionables" :actionable="actionable" :key="actionable.id" />
       <div v-if="actionables.length === 0 && !error"> no actionables available </div>
@@ -41,9 +42,7 @@ onMounted(() => {
 
 <style >
 body {
-  background-color: #173347;
-  color: #cecece;
-  @apply font-mono;
+  @apply bg-dark text-light font-mono;
 }
 
 em {
