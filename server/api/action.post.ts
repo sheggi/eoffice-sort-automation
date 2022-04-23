@@ -2,8 +2,6 @@ import Automation from "~~/src/Modules/Automation.mjs"
 import JsonConfig from "~~/src/Modules/JsonConfig.mjs"
 
 export default defineEventHandler(async (event) => {
-  console.log(event.context.params.rule)
-
   const body = await useBody(event.req)
 
   const automata = (new Automation())

@@ -41,7 +41,6 @@ const confirm = async () => {
 }
 
 const decline = () => {
-    console.log('wtf')
     result.value = 'none'
 }
 </script>

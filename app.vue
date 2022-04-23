@@ -12,6 +12,7 @@
       <button @click="findActionables" class=" text-blue-500 hover:text-blue-400">refresh</button>
       <div v-if="loading">loading ...</div>
       <Actionable v-else v-for="actionable in actionables" :actionable="actionable" :key="actionable.id" />
+      <div v-if="actionables.length === 0"> no actionables available </div>
     </div>
   </div>
 </template>
