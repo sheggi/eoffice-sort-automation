@@ -79,18 +79,19 @@
     },
     {
       "name": "Viseca file automation",
+      "parseFileName": "(?<subject>[A-Za-z]+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)_.*_(?<portfolio>\\d+)_(?<nr>\\d*)\\.",
       "conditions": [
         {
-          "property": "name",
-          "regexp": "^visebpp",
+          "property": "subject",
+          "regexp": "^visebpp$",
           "@type": "FilePattern"
         }
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Finanzen\\Viseca\\{{name}}"
+        "destination": "%GoogleDrive%/Service/Finanzen/Viseca/{{year}}/{{name}}"
       },
-      "id": "move-to-viseca-documents"
+      "id": "move-to-viseca-yearly-documents"
     },
     {
       "name": "Visana yearly file automation",
