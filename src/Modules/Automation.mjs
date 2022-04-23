@@ -47,17 +47,15 @@ export default class Automation {
 
     return this.fileStats.flatMap(fileStat =>
       this.rules
-        .filter(rule =>
-          rule.conditions.reduce((prev, condition) =>
-            prev || condition.match(fileStat), false)
-        )
+        .map(rule => rule.prepare(fileStat))
+        .filter(rule => rule.match())
         .map(rule => ({
           id: rule.id,
           file: {
             name: fileStat.name
           },
           name: rule.name,
-          description: rule.action.getDescription(fileStat)
+          description: rule.action.getDescription()
         }))
     )
   }
@@ -70,6 +68,6 @@ export default class Automation {
     const rule = this.rules.find(rule => rule.id === actionable.id)
     if (!rule) throw new Error('rule not found')
 
-    return await rule.action.do(fileStat);
+    return await rule.prepare(fileStat).action.do();
   }
 };

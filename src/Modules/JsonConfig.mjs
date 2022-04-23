@@ -75,6 +75,7 @@ class JsonConfig {
 
         return await (new Rule(rule.name))
           .setId(rule.id)
+          .setParseFileName(rule.parseFileName)
           .setConditions(conditions)
           .setAction(action)
       })
