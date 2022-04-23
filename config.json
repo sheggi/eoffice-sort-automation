@@ -109,13 +109,9 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year}}/{{subject}}/{{name}}",
-        "options": {
-          "clobber":false,
-          "mkdirp":true
-        }
+        "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year}}/{{subject}}/{{name}}"
       },
-      "id": "move-to-visana-yearly-tay-folder"
+      "id": "move-to-visana-yearly-tax-folder"
     },
     {
       "name": "Visana Steuernachweis yearly file automation",
@@ -134,11 +130,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year-1}}/{{subject}}/{{name}}",
-        "options": {
-          "clobber":false,
-          "mkdirp":true
-        }
+        "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year-1}}/{{subject}}/{{name}}"
       },
       "id": "move-to-visana-yearly-subject-folder"
     },
