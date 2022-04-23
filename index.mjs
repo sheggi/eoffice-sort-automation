@@ -6,7 +6,7 @@ import clear from 'clear'
 import figlet from 'figlet'
 import inquirer from 'inquirer'
 import println from './src/lib/println.mjs'
-import jsonConfig from './src/Modules/JsonConfig.mjs'
+import JsonConfig from './src/Modules/JsonConfig.mjs'
 import Automata from './src/Modules/Automation.mjs'
 import emphasize, { use } from './src/lib/emphasize.mjs';
 
@@ -23,10 +23,10 @@ console.log(
 );
 
 // assemble
-
+await JsonConfig.load()
 const automata = (new Automata())
-  .setWorkingDir(await jsonConfig.getDirectory())
-  .setRules(await jsonConfig.getRules());
+  .setWorkingDir(await JsonConfig.getDirectory())
+  .setRules(await JsonConfig.getRules());
 
 
 println(`looking for files in ${emphasize(automata.directory)}`);

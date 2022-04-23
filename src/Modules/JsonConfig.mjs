@@ -1,7 +1,12 @@
-import config from '../../config.json' assert { type: 'json' }
 import _ from 'lodash'
+import fs from 'fs/promises'
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 import Rule from './Rule.mjs'
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+let config = null
 
 const hydrate = async function (Model, raw, cache) {
   const type = raw['@type'];
@@ -35,6 +40,10 @@ class JsonConfig {
   constructor() {
     this.conditionsCache = {};
     this.actionsCache = {};
+  }
+
+  async load() {
+    config = JSON.parse(await fs.readFile(__dirname + '/../../config.json'))
 
     this.checkVersion();
   }

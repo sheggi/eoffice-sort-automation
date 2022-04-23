@@ -1,11 +1,12 @@
 import { use } from "~~/src/lib/emphasize.mjs";
 import Automation from "~~/src/Modules/Automation.mjs"
+import JsonConfig from "~~/src/Modules/JsonConfig.mjs";
 
 export default defineEventHandler(async (event) => {
   use(text => `<br><em>${text}</em>`)
 
   try {
-    const JsonConfig = (await import('~~/src/Modules/JsonConfig.mjs')).default
+    await JsonConfig.load()
 
     const automata = (new Automation())
       .setWorkingDir(await JsonConfig.getDirectory())
