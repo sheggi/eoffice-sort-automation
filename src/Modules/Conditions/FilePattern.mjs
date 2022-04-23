@@ -9,15 +9,20 @@ export default class FilePattern extends Model {
 
   setProperty(property) {
     this.property = property
+
+    return this
   }
   setRegexp(regexp) {
-    this.regexp = regexp
+    this.regexp = new RegExp(regexp)
+
+    return this
   }
 
   match(fileStat) {
     if (!fileStat) {
       return false;
     }
-    return (fileStat[this.property] + '').match(this.regexp);
+    
+    return this.regexp.exec(fileStat[this.property]);
   }
 };
