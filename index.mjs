@@ -36,7 +36,7 @@ await automata.readWorkingDir()
 
 const actionables = await automata.findActionables({ color: true })
 
-await Promise.all(actionables.map(async (actionable) => {
+for (const actionable of actionables) {
   println(`handle file ${chalk.yellow(actionable.file.name)}`);
 
   const answer = await inquirer.prompt({
@@ -50,7 +50,7 @@ await Promise.all(actionables.map(async (actionable) => {
 
     println(`result: ${confirmed}`)
   }
-}))
+}
 
 println(chalk.green('all files handled!'));
 
