@@ -45,4 +45,8 @@ body {
   color: #cecece;
   @apply font-mono;
 }
+
+em {
+  @apply text-yellow-400
+}
 </style>
