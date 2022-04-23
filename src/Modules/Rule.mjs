@@ -37,8 +37,12 @@ export default class Rule {
       this.fileStat = Object.assign(this.fileStat, match?.groups || {})
     }
 
-    this.action.prepare(this.fileStat)
+    // computed stats
+    if (this.fileStat.year) {
+      this.fileStat['year-1'] = this.fileStat.year - 1
+    }
 
+    this.action.prepare(this.fileStat)
 
     return this
   }
