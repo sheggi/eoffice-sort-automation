@@ -194,7 +194,11 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%/{{year}}//{{name}}"
+        "destination": "%GoogleDrive%/{{year}}//{{name}}",
+        "options": {
+          "clobber": false,
+          "mkdirp": true
+        }
       },
       "id": "test-id"
     }

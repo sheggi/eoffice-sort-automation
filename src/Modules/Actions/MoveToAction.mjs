@@ -9,6 +9,7 @@ export default class MoveToAction extends Model {
     super()
 
     this.destination = null
+    this.options = { clobber: false }
 
     this.fileStat = null
     this.source = null
@@ -18,6 +19,10 @@ export default class MoveToAction extends Model {
   setDestination(destination) {
     this.destination = destination;
     return this;
+  }
+
+  setOptions(options) {
+    this.options = options
   }
 
   prepare(fileStat) {
@@ -43,7 +48,8 @@ export default class MoveToAction extends Model {
     if (!this.source || !this.target) throw new Error('unprepared action')
 
     await new Promise((resolve, reject) => {
-      mv(this.source, this.target, { clobber: false }, (err) => err ? reject(err) : resolve())
+      // https://github.com/andrewrk/node-mv
+      mv(this.source, this.target, this.options, (err) => err ? reject(err) : resolve())
     })
 
     return true;
