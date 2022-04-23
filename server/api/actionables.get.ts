@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 
 
     await automata.readWorkingDir()
-    const actionables = await automata.findActionables()
+    const actionables = await automata.findActionables({noop: false})
 
     return {
       actionables

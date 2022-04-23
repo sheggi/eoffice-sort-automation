@@ -50,13 +50,14 @@ export default class Automation {
     this.fileStats = files
   }
 
-  async findActionables() {
+  async findActionables(options = {noop: true}) {
     if (!this.fileStats) throw new Error('read working directory first')
 
     return this.fileStats.flatMap(fileStat =>
       this.rules
         .map(rule => rule.prepare(fileStat))
         .filter(rule => rule.match())
+        .filter(rule => options.noop || rule.action.source !== rule.action.target)
         .map(rule => ({
           id: rule.id,
           file: {
