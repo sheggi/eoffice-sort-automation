@@ -44,7 +44,7 @@ export default class Rule {
   }
 
   match() {
-    return this.conditions.reduce((prev, condition) =>
-      prev || condition.match(this.fileStat), false)
+    return this.conditions
+      .filter(condition => condition.match(this.fileStat)).length === this.conditions.length
   }
 };
