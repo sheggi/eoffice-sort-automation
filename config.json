@@ -20,7 +20,7 @@
     },
     {
       "name": "EKI file automation",
-      "parseFileName": "(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)_00-00-00-(?<portfolio>\\d+)-(?<nr>\\d*)-(?<subject>[\\w\\s\\-_]+)\\.",
+      "parseFileName": "(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)_00-00-00-(?<portfolio>\\d+)-(?<nr>\\d+)-(?<subject>[\\w\\s\\-_]+)\\.",
       "conditions": [
         {
           "property": "portfolio",
@@ -33,6 +33,22 @@
         "destination": "%GoogleDrive%/Service/Finanzen/EKI/{{year}}/{{subject}}/{{name}}"
       },
       "id": "move-to-eki-yearly-documents"
+    },
+    {
+      "name": "EKI file automation",
+      "parseFileName": "(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)_00-00-00-(?<nr>\\d+)-(?<subject>[\\w\\s\\-_]+)\\.",
+      "conditions": [
+        {
+          "property": "subject",
+          "regexp": "^Private Banking Report$",
+          "@type": "FilePattern"
+        }
+      ],
+      "action": {
+        "@type": "MoveToAction",
+        "destination": "%GoogleDrive%/Service/Finanzen/EKI/{{year-1}}/{{name}}"
+      },
+      "id": "move-to-eki-yearly-reports"
     },
     {
       "name": "BEKB file automation",
