@@ -1,7 +1,7 @@
 <template>
-    <div class="actionable font-mono mt-4">
-        <div v-html="props.actionable.name"></div>
-        <div>---</div>
+    <div class="actionable font-mono mt-8
+    ">
+        <div v-html="`# ${props.actionable.name}`"></div>
         <div v-html="props.actionable.description"></div>
         <div v-if="result" :class="{ ' text-green-600': status === 'success', 'text-red-800': status === 'error' }">&gt;
             {{
