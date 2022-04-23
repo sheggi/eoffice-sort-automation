@@ -35,7 +35,6 @@ export default class Rule {
     if (this.parseFileName) {
       const match = this.parseFileName.exec(this.fileStat.file)
       this.fileStat = Object.assign(this.fileStat, match?.groups || {})
-      console.log({ parseFile: this.parseFileName, fileStat, match })
     }
 
     this.action.prepare(this.fileStat)

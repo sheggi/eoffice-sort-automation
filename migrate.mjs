@@ -2,7 +2,8 @@ import legacy from './config.json' assert {type: 'json'}
 import fs from 'fs/promises'
 
 if(legacy.version !== 1) {
-    throw new Error(`expect config version to be 1 but got ${legacy.version}`)
+    console.error(`expected config version is 1 got ${legacy.version}`);
+    process.exit(1)
 }
 
 const config = {

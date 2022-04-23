@@ -45,7 +45,7 @@ class JsonConfig {
       config.version !== 2 ||
       !_.isArray(config.rules)
     ) {
-      console.error('expected config version is 2 got ' + (config || {}).version);
+      console.error(`expected config version is 2 got ${(config || {}).version}`);
       process.exit(1)
     }
   }
