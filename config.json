@@ -3,34 +3,24 @@
   "directory": "%Downloads%",
   "rules": [
     {
-      "name": "EKI file automation",
+      "name": "EKI legacy file automation",
+      "parseFileName": "(?<year>\\d\\d\\d\\d)_(?<month>\\d\\d)_(?<day>\\d\\d)-(?<nr>\\d?)-(?<subject>[A-Za-z]+)",
       "conditions": [
         {
-          "property": "name",
-          "regexp": "2019.*[\\d]{10}\\-(Kontoauszug|Einzelanzeige)\\.pdf$",
+          "property": "subject",
+          "regexp": "^(Kontoauszug|Einzelanzeige|Zins-_Kapitalausweis|Kontoabschluss_auszug)$",
           "@type": "FilePattern"
         }
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2019\\{{name}}"
+        "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\{{year}}\\{{subject}}\\{{year}}-{{month}}-{{day}}_00-00-00-50353011236-{{nr}}-{{subject}}{{ext}}",
+        "options": {
+          "clobber": false,
+          "mkdirp": true
+        }
       },
       "id": "move-to-eki-2019-documents"
-    },
-    {
-      "name": "EKI file automation",
-      "conditions": [
-        {
-          "property": "name",
-          "regexp": "^2020.*[\\d]{14}\\-(Kontoauszug|Einzelanzeige|Kontoabschluss_auszug|Zins-_Kapitalausweis|Private Banking Report)\\.pdf$",
-          "@type": "FilePattern"
-        }
-      ],
-      "action": {
-        "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2020\\{{name}}"
-      },
-      "id": "move-to-eki-2020-documents"
     },
     {
       "name": "EKI file automation",
