@@ -3,183 +3,193 @@
   "directory": "%Downloads%",
   "rules": [
     {
+      "id": "legacy-move-to-eki-yearly-documents",
       "name": "EKI legacy file automation",
-      "parseFileName": "(?<year>\\d\\d\\d\\d)_(?<month>\\d\\d)_(?<day>\\d\\d)-(?<nr>\\d?)-(?<subject>[\\w\\s\\-_]+)\\.\\w+$",
-      "conditions": [
-        {
-          "property": "subject",
-          "regexp": "^(Kontoauszug|Einzelanzeige|Zins-_Kapitalausweis|Kontoabschluss_auszug)$",
-          "@type": "FilePattern"
-        }
-      ],
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Finanzen/EKI/{{year}}/{{subject}}/{{year}}-{{month}}-{{day}}_00-00-00-50353011236-{{nr}}-{{subject}}{{ext}}"
       },
-      "id": "legacy-move-to-eki-yearly-documents"
-    },
-    {
-      "name": "EKI file automation",
-      "parseFileName": "(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)_00-00-00-(?<portfolio>\\d+)-(?<nr>\\d+)-(?<subject>[\\w\\s\\-_]+)\\.",
+      "version": 1650739550234,
       "conditions": [
         {
-          "property": "portfolio",
-          "regexp": "^(50353011236|50353011245|50353011550)$",
-          "@type": "FilePattern"
+          "@type": "FilePattern",
+          "regexp": "^(Kontoauszug|Einzelanzeige|Zins-_Kapitalausweis|Kontoabschluss_auszug)$",
+          "property": "subject"
         }
       ],
+      "parseFileName": "(?<year>\\d\\d\\d\\d)_(?<month>\\d\\d)_(?<day>\\d\\d)-(?<nr>\\d?)-(?<subject>[\\w\\s\\-_]+)\\.\\w+$"
+    },
+    {
+      "id": "move-to-eki-yearly-documents",
+      "name": "EKI file automation",
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Finanzen/EKI/{{year}}/{{subject}}/{{name}}"
       },
-      "id": "move-to-eki-yearly-documents"
-    },
-    {
-      "name": "EKI file automation",
-      "parseFileName": "(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)_00-00-00-(?<nr>\\d+)-(?<subject>[\\w\\s\\-_]+)\\.",
+      "version": 1650739550287,
       "conditions": [
         {
-          "property": "subject",
-          "regexp": "^Private Banking Report$",
-          "@type": "FilePattern"
+          "@type": "FilePattern",
+          "regexp": "^(50353011236|50353011245|50353011550)$",
+          "property": "portfolio"
         }
       ],
+      "parseFileName": "(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)_00-00-00-(?<portfolio>\\d+)-(?<nr>\\d+)-(?<subject>[\\w\\s\\-_]+)\\."
+    },
+    {
+      "id": "move-to-eki-yearly-reports",
+      "name": "EKI file automation",
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Finanzen/EKI/{{year-1}}/{{name}}"
       },
-      "id": "move-to-eki-yearly-reports"
-    },
-    {
-      "name": "BEKB file automation",
-      "parseFileName": "(?<portfolio>\\d+)-(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)-(?<subject>[A-Za-z]+)-(?<nr>\\d*)\\.",
+      "version": 1650739550366,
       "conditions": [
         {
-          "property": "portfolio",
-          "regexp": "^(42593270865|42925041863|42488142633)$",
-          "@type": "FilePattern"
+          "@type": "FilePattern",
+          "regexp": "^Private Banking Report$",
+          "property": "subject"
         }
       ],
+      "parseFileName": "(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)_00-00-00-(?<nr>\\d+)-(?<subject>[\\w\\s\\-_]+)\\."
+    },
+    {
+      "id": "move-to-bekb-yearly-documents",
+      "name": "BEKB file automation",
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Finanzen/BEKB/{{year}}/{{subject}}/{{name}}"
       },
-      "id": "move-to-bekb-yearly-documents"
-    },
-    {
-      "name": "BEKB legacy automation",
-      "parseFileName": "(?<subject>[A-Za-z]+)_(?<legacy>[A-Za-z]+)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\.",
+      "version": 1650739550414,
       "conditions": [
         {
-          "property": "legacy",
-          "regexp": "^bekb$",
-          "@type": "FilePattern"
-        },
-        {
-          "property": "portfolio",
+          "@type": "FilePattern",
           "regexp": "^(42593270865|42925041863|42488142633)$",
-          "@type": "FilePattern"
+          "property": "portfolio"
         }
       ],
+      "parseFileName": "(?<portfolio>\\d+)-(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)-(?<subject>[A-Za-z]+)-(?<nr>\\d*)\\."
+    },
+    {
+      "id": "legacy-move-to-bekb-yearly-documents",
+      "name": "BEKB legacy automation",
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Finanzen/BEKB/{{year}}/{{subject}}/{{portfolio}}-{{year}}{{month}}{{day}}-{{subject}}-00{{ext}}"
       },
-      "id": "legacy-move-to-bekb-yearly-documents"
-    },
-    {
-      "name": "Viseca file automation",
-      "parseFileName": "(?<subject>[A-Za-z]+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)_.*_(?<portfolio>\\d+)_(?<nr>\\d*)\\.",
+      "version": 1650739550464,
       "conditions": [
         {
-          "property": "subject",
-          "regexp": "^visebpp$",
-          "@type": "FilePattern"
+          "@type": "FilePattern",
+          "regexp": "^bekb$",
+          "property": "legacy"
+        },
+        {
+          "@type": "FilePattern",
+          "regexp": "^(42593270865|42925041863|42488142633)$",
+          "property": "portfolio"
         }
       ],
+      "parseFileName": "(?<subject>[A-Za-z]+)_(?<legacy>[A-Za-z]+)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\."
+    },
+    {
+      "id": "move-to-viseca-yearly-documents",
+      "name": "Viseca file automation",
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Finanzen/Viseca/{{year}}/{{name}}"
       },
-      "id": "move-to-viseca-yearly-documents"
-    },
-    {
-      "name": "Visana yearly file automation",
-      "parseFileName": "(?<subject>[A-Za-z]+)(?<nr>\\d*)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\.",
+      "version": 1650739550512,
       "conditions": [
         {
-          "property": "subject",
-          "regexp": "^((?!Steuernachweis).)*$",
-          "@type": "FilePattern"
-        },
-        {
-          "property": "portfolio",
-          "regexp": "^105340865$",
-          "@type": "FilePattern"
+          "@type": "FilePattern",
+          "regexp": "^visebpp$",
+          "property": "subject"
         }
       ],
+      "parseFileName": "(?<subject>[A-Za-z]+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)_.*_(?<portfolio>\\d+)_(?<nr>\\d*)\\."
+    },
+    {
+      "id": "move-to-visana-yearly-tax-folder",
+      "name": "Visana yearly file automation",
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year}}/{{subject}}/{{name}}"
       },
-      "id": "move-to-visana-yearly-tax-folder"
-    },
-    {
-      "name": "Visana Steuernachweis yearly file automation",
-      "parseFileName": "(?<subject>[A-Za-z]+)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\.",
+      "version": 1650739550560,
       "conditions": [
         {
-          "property": "subject",
-          "regexp": "^Steuernachweis$",
-          "@type": "FilePattern"
+          "@type": "FilePattern",
+          "regexp": "^((?!Steuernachweis).)*$",
+          "property": "subject"
         },
         {
-          "property": "portfolio",
+          "@type": "FilePattern",
           "regexp": "^105340865$",
-          "@type": "FilePattern"
+          "property": "portfolio"
         }
       ],
+      "parseFileName": "(?<subject>[A-Za-z]+)(?<nr>\\d*)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\."
+    },
+    {
+      "id": "move-to-visana-yearly-subject-folder",
+      "name": "Visana Steuernachweis yearly file automation",
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year-1}}/{{subject}}/{{name}}"
       },
-      "id": "move-to-visana-yearly-subject-folder"
-    },
-    {
-      "name": "AXA yearly file automation",
-      "parseFileName": "(?<subject>[A-Za-z]+)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)\\.",
+      "version": 1650739550612,
       "conditions": [
         {
-          "property": "portfolio",
-          "regexp": "^18754653$",
-          "@type": "FilePattern"
+          "@type": "FilePattern",
+          "regexp": "^Steuernachweis$",
+          "property": "subject"
+        },
+        {
+          "@type": "FilePattern",
+          "regexp": "^105340865$",
+          "property": "portfolio"
         }
       ],
+      "parseFileName": "(?<subject>[A-Za-z]+)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\."
+    },
+    {
+      "id": "move-to-axa-yearly-document",
+      "name": "AXA yearly file automation",
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Versicherung/AXA Winterthur/{{year}}/{{name}}"
       },
-      "id": "move-to-axa-yearly-document"
-    },
-    {
-      "name": "Test automation",
-      "parseFileName": "(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)",
+      "version": 1650739550665,
       "conditions": [
         {
-          "property": "name",
-          "regexp": "^test.*\\.txt$",
-          "@type": "FilePattern"
+          "@type": "FilePattern",
+          "regexp": "^18754653$",
+          "property": "portfolio"
         }
       ],
+      "parseFileName": "(?<subject>[A-Za-z]+)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)\\."
+    },
+    {
+      "id": "test-id",
+      "name": "Test automation",
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%/{{year}}//{{name}}",
         "options": {
-          "clobber": false,
-          "mkdirp": true
-        }
+          "mkdirp": true,
+          "clobber": false
+        },
+        "destination": "%GoogleDrive%/{{year}}//{{name}}"
       },
-      "id": "test-id"
+      "version": 1650739550715,
+      "conditions": [
+        {
+          "@type": "FilePattern",
+          "regexp": "^test.*\\.txt$",
+          "property": "name"
+        }
+      ],
+      "parseFileName": "(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)"
     }
   ]
 }
