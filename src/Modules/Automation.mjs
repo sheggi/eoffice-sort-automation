@@ -21,7 +21,6 @@ export default class Automation {
   }
 
   async readWorkingDir() {
-    console.log(`${this.directory}/*`)
     let files = await new Promise((resolve, reject) => {
       glob(`**/*`, { cwd: this.directory, stat: true }, function (err, files) {
         if (err) reject(err)
