@@ -93,64 +93,54 @@
       "id": "move-to-viseca-documents"
     },
     {
-      "name": "Visana Leistungsabrechnung file automation",
+      "name": "Visana yearly file automation",
+      "parseFileName": "(?<subject>[A-Za-z]+)(?<nr>\\d*)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\.",
       "conditions": [
         {
-          "property": "name",
-          "regexp": "^Leistungsabrechnung.*\\_2020.*\\.pdf$",
+          "property": "subject",
+          "regexp": "^((?!Steuernachweis).)*$",
+          "@type": "FilePattern"
+        },
+        {
+          "property": "portfolio",
+          "regexp": "^105340865$",
           "@type": "FilePattern"
         }
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Leistungsabrechnung\\2020\\{{name}}"
+        "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year}}/{{subject}}/{{name}}",
+        "options": {
+          "clobber":false,
+          "mkdirp":true
+        }
       },
-      "id": "move-to-visana-leistungsabrechnung"
+      "id": "move-to-visana-yearly-tay-folder"
     },
     {
-      "name": "Visana Prämienrechnung file automation",
+      "name": "Visana Steuernachweis yearly file automation",
+      "parseFileName": "(?<subject>[A-Za-z]+)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\.",
       "conditions": [
         {
-          "property": "name",
-          "regexp": "^Praemienrechnung.*\\_2020.*\\.pdf$",
+          "property": "subject",
+          "regexp": "^Steuernachweis$",
+          "@type": "FilePattern"
+        },
+        {
+          "property": "portfolio",
+          "regexp": "^105340865$",
           "@type": "FilePattern"
         }
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Prämienrechnung\\2020\\{{name}}"
-      },
-      "id": "move-to-visana-praemienrechnung"
-    },
-    {
-      "name": "Visana Leistungsabrechnung file automation",
-      "conditions": [
-        {
-          "property": "name",
-          "regexp": "^Leistungsabrechnung.*\\_2021.*\\.pdf$",
-          "@type": "FilePattern"
+        "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year-1}}/{{subject}}/{{name}}",
+        "options": {
+          "clobber":false,
+          "mkdirp":true
         }
-      ],
-      "action": {
-        "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Leistungsabrechnung\\2021\\{{name}}"
       },
-      "id": "move-to-visana-leistungsabrechnung-2021"
-    },
-    {
-      "name": "Visana Prämienrechnung file automation",
-      "conditions": [
-        {
-          "property": "name",
-          "regexp": "^Praemienrechnung.*\\_2021.*\\.pdf$",
-          "@type": "FilePattern"
-        }
-      ],
-      "action": {
-        "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Prämienrechnung\\2021\\{{name}}"
-      },
-      "id": "move-to-visana-praemienrechnung-2021"
+      "id": "move-to-visana-yearly-subject-folder"
     },
     {
       "name": "AXA yearly file automation",
