@@ -1,6 +1,10 @@
 import legacy from './config.json' assert {type: 'json'}
 import fs from 'fs/promises'
 
+if(legacy.version !== 1) {
+    throw new Error(`expect config version to be 1 but got ${legacy.version}`)
+}
+
 const config = {
     version: 2,
     directory: legacy.directory,
@@ -16,6 +20,7 @@ config.rules = legacy.rules.map(rule => {
         return condition
     })
     newRule.action = legacy.actions.find(action => action.id === rule.action)
+    newRule.action.destination+='\\{{name}}'
 
     newRule.id = newRule.action.id
     delete newRule.action.id

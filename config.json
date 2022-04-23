@@ -13,7 +13,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2019"
+        "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2019\\{{name}}"
       },
       "id": "move-to-eki-2019-documents"
     },
@@ -28,7 +28,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2020"
+        "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2020\\{{name}}"
       },
       "id": "move-to-eki-2020-documents"
     },
@@ -43,7 +43,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2021"
+        "destination": "%GoogleDrive%\\Service\\Finanzen\\EKI\\Dokumente\\2021\\{{name}}"
       },
       "id": "move-to-eki-2021-documents"
     },
@@ -58,7 +58,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Finanzen\\BEKB\\2020"
+        "destination": "%GoogleDrive%\\Service\\Finanzen\\BEKB\\2020\\{{name}}"
       },
       "id": "move-to-bekb-2020-documents"
     },
@@ -73,7 +73,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Finanzen\\BEKB\\2021"
+        "destination": "%GoogleDrive%\\Service\\Finanzen\\BEKB\\2021\\{{name}}"
       },
       "id": "move-to-bekb-2021-documents"
     },
@@ -88,7 +88,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Finanzen\\Viseca"
+        "destination": "%GoogleDrive%\\Service\\Finanzen\\Viseca\\{{name}}"
       },
       "id": "move-to-viseca-documents"
     },
@@ -103,7 +103,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Leistungsabrechnung\\2020"
+        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Leistungsabrechnung\\2020\\{{name}}"
       },
       "id": "move-to-visana-leistungsabrechnung"
     },
@@ -118,7 +118,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Prämienrechnung\\2020"
+        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Prämienrechnung\\2020\\{{name}}"
       },
       "id": "move-to-visana-praemienrechnung"
     },
@@ -133,7 +133,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Leistungsabrechnung\\2021"
+        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Leistungsabrechnung\\2021\\{{name}}"
       },
       "id": "move-to-visana-leistungsabrechnung-2021"
     },
@@ -148,7 +148,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Prämienrechnung\\2021"
+        "destination": "%GoogleDrive%\\Service\\Krankenkasse\\Visana\\Prämienrechnung\\2021\\{{name}}"
       },
       "id": "move-to-visana-praemienrechnung-2021"
     },
@@ -163,7 +163,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2020"
+        "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2020\\{{name}}"
       },
       "id": "move-to-axa-2020-documents"
     },
@@ -178,7 +178,7 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2021"
+        "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2021\\{{name}}"
       },
       "id": "move-to-axa-2021-documents"
     },
