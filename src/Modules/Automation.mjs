@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 import path from 'path'
+import glob from 'glob'
 
 export default class Automation {
   constructor() {
@@ -20,14 +21,22 @@ export default class Automation {
   }
 
   async readWorkingDir() {
-    let files = await fs.readdir(this.directory)
+    console.log(`${this.directory}/*`)
+    let files = await new Promise((resolve, reject) => {
+      glob(`**/*`, { cwd: this.directory, stat: true }, function (err, files) {
+        if (err) reject(err)
+        resolve(files || [])
+      })
+    })
 
     // resolve file statistics for filename
     files = await Promise.all(
-      files.map(async (name) => {
-        const file = path.join(this.directory, name);
+      files.map(async (filePath) => {
+        const file = path.join(this.directory, filePath);
         const stat = await fs.stat(file)
-        return Object.assign(stat, { name, file })
+        const name = path.basename(filePath)
+        const ext = path.extname(filePath)
+        return Object.assign(stat, { path: filePath, file, name, ext })
       })
     )
 
