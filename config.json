@@ -188,13 +188,13 @@
       "conditions": [
         {
           "property": "name",
-          "regexp": "^test.txt$",
+          "regexp": "^test.*\\.txt$",
           "@type": "FilePattern"
         }
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%"
+        "destination": "%GoogleDrive%/{{year}}//{{name}}"
       },
       "id": "test-id"
     }
