@@ -4,7 +4,7 @@
   "rules": [
     {
       "name": "EKI legacy file automation",
-      "parseFileName": "(?<year>\\d\\d\\d\\d)_(?<month>\\d\\d)_(?<day>\\d\\d)-(?<nr>\\d?)-(?<subject>[A-Za-z]+)\\.\\w+$",
+      "parseFileName": "(?<year>\\d\\d\\d\\d)_(?<month>\\d\\d)_(?<day>\\d\\d)-(?<nr>\\d?)-(?<subject>[\\w\\s\\-_]+)\\.\\w+$",
       "conditions": [
         {
           "property": "subject",
@@ -14,17 +14,13 @@
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%/Service/Finanzen/EKI/{{year}}/{{subject}}/{{year}}-{{month}}-{{day}}_00-00-00-50353011236-{{nr}}-{{subject}}{{ext}}",
-        "options": {
-          "clobber": false,
-          "mkdirp": true
-        }
+        "destination": "%GoogleDrive%/Service/Finanzen/EKI/{{year}}/{{subject}}/{{year}}-{{month}}-{{day}}_00-00-00-50353011236-{{nr}}-{{subject}}{{ext}}"
       },
       "id": "legacy-move-to-eki-yearly-documents"
     },
     {
       "name": "EKI file automation",
-      "parseFileName": "(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)_00-00-00-(?<portfolio>\\d+)-(?<nr>\\d*)-(?<subject>[A-Za-z]+)\\.",
+      "parseFileName": "(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)_00-00-00-(?<portfolio>\\d+)-(?<nr>\\d*)-(?<subject>[\\w\\s\\-_]+)\\.",
       "conditions": [
         {
           "property": "portfolio",
