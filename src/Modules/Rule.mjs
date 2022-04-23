@@ -30,7 +30,7 @@ export default class Rule {
   }
 
   prepare(fileStat) {
-    this.fileStat = fileStat
+    this.fileStat = Object.assign({}, fileStat)
 
     if (this.parseFileName) {
       const match = this.parseFileName.exec(this.fileStat.file)
