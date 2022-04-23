@@ -153,34 +153,20 @@
       "id": "move-to-visana-praemienrechnung-2021"
     },
     {
-      "name": "AXA file automation",
+      "name": "AXA yearly file automation",
+      "parseFileName": "(?<subject>[A-Za-z]+)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)\\.",
       "conditions": [
         {
-          "property": "name",
-          "regexp": "^.*\\_18754653\\_2020.*\\.pdf$",
+          "property": "portfolio",
+          "regexp": "^1875465$",
           "@type": "FilePattern"
         }
       ],
       "action": {
         "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2020\\{{name}}"
+        "destination": "%GoogleDrive%/Service/Versicherung/AXA Winterthur/{{year}}/{{name}}"
       },
-      "id": "move-to-axa-2020-documents"
-    },
-    {
-      "name": "AXA file automation",
-      "conditions": [
-        {
-          "property": "name",
-          "regexp": "^.*\\_18754653\\_2021.*\\.pdf$",
-          "@type": "FilePattern"
-        }
-      ],
-      "action": {
-        "@type": "MoveToAction",
-        "destination": "%GoogleDrive%\\Service\\Versicherung\\AXA Winterthur\\2021\\{{name}}"
-      },
-      "id": "move-to-axa-2021-documents"
+      "id": "move-to-axa-yearly-document"
     },
     {
       "name": "Test automation",
