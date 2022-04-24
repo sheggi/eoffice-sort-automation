@@ -60,15 +60,32 @@
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Finanzen/BEKB/{{year}}/{{subject}}/{{name}}"
       },
-      "version": 1650739550414,
+      "version": 1650739550417,
       "conditions": [
         {
           "@type": "FilePattern",
-          "regexp": "^(42593270865|42925041863|42488142633)$",
+          "regexp": "^(42925041863|42488142633|CH6300790042925041863|CH5100790042488142633)$",
           "property": "portfolio"
         }
       ],
-      "parseFileName": "(?<portfolio>\\d+)-(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)-(?<subject>[A-Za-z]+)-(?<nr>\\d*)\\."
+      "parseFileName": "(?<portfolio>\\w*\\d+)(-|_)(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)(-|_)(?<subject>[A-Za-z]+)(-|_)(?<nr>\\d*)\\."
+    },
+    {
+      "id": "move-to-bekb-yearly-household",
+      "name": "BEKB Haushalt file automation",
+      "action": {
+        "@type": "MoveToAction",
+        "destination": "%GoogleDrive%/Service/Finanzen/BEKB/Haushalt/{{year}}/{{subject}}/{{name}}"
+      },
+      "version": 1650739550418,
+      "conditions": [
+        {
+          "@type": "FilePattern",
+          "regexp": "^(42593270865|CH9300790042593270865)$",
+          "property": "portfolio"
+        }
+      ],
+      "parseFileName": "(?<portfolio>\\w*\\d+)(-|_)(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)(-|_)(?<subject>[A-Za-z]+)(-|_)(?<nr>\\d*)\\."
     },
     {
       "id": "legacy-move-to-bekb-yearly-documents",
