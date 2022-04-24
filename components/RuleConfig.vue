@@ -11,12 +11,12 @@
             <input v-model="edit.action.destination" class=" bg-dark text-light flex-grow  ml-4">
         </div>
         <div>🔗 Conditions:
-            <div v-for="(condition, index) in edit.conditions" :key="index" class="flex m-1 ml-8 hover:ring">
+            <div v-for="(condition, index) in edit.conditions" :key="index" class="flex m-1 ml-12 hover:ring">
                 <input v-model="condition.property" class=" bg-dark text-light">:
                 <input v-model="condition.regexp" class=" bg-dark text-light flex-grow ml-4">
                 <button @click="removeCondition(index)" class="text-blue-500 hover:text-blue-400">🗑 remove</button>
             </div>
-            <button @click="addCondition()" class="text-blue-500 hover:text-blue-400 ml-8">✳️ add</button>
+            <button @click="addCondition()" class="text-blue-500 hover:text-blue-400 ml-12">✳️ add</button>
         </div>
         <div v-if="changed"><button @click="save(edit)" class="text-blue-500 hover:text-blue-400">🔄 save</button></div>
         <div v-else>🕛 {{ new Date(edit.version) }}</div>
