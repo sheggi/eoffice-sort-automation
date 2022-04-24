@@ -41,7 +41,7 @@ async function sync() {
     for (const index in local.rules) {
         const rule = local.rules[index]
         const origin = config.rules.find(originRule => originRule.id === rule.id)
-        if (rule.version && rule.version > origin.version) {
+        if (!origin || (rule.version && rule.version > origin.version)) {
             await metaStore.set(`config.rules.${rule.id}`, rule)
             const versionHash = hash(rule)
             await metaStore.set(`config.rule-hisory.${rule.id}.${versionHash}`, rule)
