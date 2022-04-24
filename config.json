@@ -60,7 +60,7 @@
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Finanzen/BEKB/{{year}}/{{subject}}/{{name}}"
       },
-      "version": 1650739550417,
+      "version": 1650739550418,
       "conditions": [
         {
           "@type": "FilePattern",
@@ -68,7 +68,7 @@
           "property": "portfolio"
         }
       ],
-      "parseFileName": "(?<portfolio>\\w*\\d+)(-|_)(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)(-|_)(?<subject>[A-Za-z]+)(-|_)(?<nr>\\d*)\\."
+      "parseFileName": "(?<portfolio>\\w*\\d+)(-|_)(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)(-|_)[_\\d]*(?<subject>[A-Za-z_]+)(-|_)(?<nr>\\d*)\\."
     },
     {
       "id": "move-to-bekb-yearly-household",
