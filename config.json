@@ -128,7 +128,7 @@
     },
     {
       "id": "move-to-visana-yearly-tax-folder",
-      "name": "Visana yearly file automation",
+      "name": "Visana Steuernachweis yearly file automation",
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year}}/{{subject}}/{{name}}"
@@ -150,7 +150,7 @@
     },
     {
       "id": "move-to-visana-yearly-subject-folder",
-      "name": "Visana Steuernachweis yearly file automation",
+      "name": "Visana yearly file automation",
       "action": {
         "@type": "MoveToAction",
         "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year-1}}/{{subject}}/{{name}}"
@@ -169,6 +169,89 @@
         }
       ],
       "parseFileName": "(?<subject>[A-Za-z]+)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\."
+    },
+    {
+      "id": "move-to-visana-yearly-subject-folder-new",
+      "name": "Visana Steuernachweis yearly file automation",
+      "action": {
+        "@type": "MoveToAction",
+        "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year}}/{{subject}}/{{subject}}_{{reference}}_105340865_{{year}}{{month}}{{day}}{{ext}}"
+      },
+      "version": 1650739550612,
+      "conditions": [
+        {
+          "@type": "FilePattern",
+          "regexp": "^(Auszahlung|Leistungsabrechnung)$",
+          "property": "subject"
+        },
+        {
+          "@type": "FilePattern",
+          "regexp": "^\\d\\d\\d\\d\\d\\d\\d\\d\\d$",
+          "property": "reference"
+        }
+      ],
+      "parseFileName": "(?<subject>[a-zA-Z]+)_(?<reference>\\d\\d\\d\\d\\d\\d\\d\\d\\d)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\."
+    },
+    {
+      "id": "move-to-visana-yearly-praemien-folder-new",
+      "name": "Visana Prämien yearly file automation",
+      "action": {
+        "@type": "MoveToAction",
+        "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year}}/Praemienrechnung/{{subject}}_{{reference}}_105340865_{{year}}{{month}}{{day}}{{ext}}"
+      },
+      "version": 1650739550612,
+      "conditions": [
+        {
+          "@type": "FilePattern",
+          "regexp": "^Prämienrechnung$",
+          "property": "subject"
+        },
+        {
+          "@type": "FilePattern",
+          "regexp": "^\\d\\d\\d\\d\\d\\d\\d\\d\\d$",
+          "property": "reference"
+        }
+      ],
+      "parseFileName": "(?<subject>Prämienrechnung)_(?<reference>\\d\\d\\d\\d\\d\\d\\d\\d\\d)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\."
+    },
+    {
+      "id": "move-to-visana-yearly-heilungskosten-folder-new",
+      "name": "Visana Prämien yearly file automation",
+      "action": {
+        "@type": "MoveToAction",
+        "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year}}/PoliceHeilungskosten/PoliceHeilungskosten_{{contract}}_105340865_{{year}}{{month}}{{day}}{{ext}}"
+      },
+      "version": 1650739550612,
+      "conditions": [
+        {
+          "@type": "FilePattern",
+          "regexp": "^Police_Heilungskosten",
+          "property": "subject"
+        },
+        {
+          "@type": "FilePattern",
+          "regexp": "^1.22616889.19$",
+          "property": "contract"
+        }
+      ],
+      "parseFileName": "(?<subject>Police_Heilungskosten)_(?<contract>[\\d\\.]{13})_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\."
+    },
+    {
+      "id": "move-to-visana-yearly-tax-folder-new",
+      "name": "Visana Steuernachweis yearly file automation",
+      "action": {
+        "@type": "MoveToAction",
+        "destination": "%GoogleDrive%/Service/Krankenkasse/Visana/{{year-1}}/{{subject}}/{{subject}}_105340865_{{year}}{{month}}{{day}}{{ext}}"
+      },
+      "version": 1650739550560,
+      "conditions": [
+        {
+          "@type": "FilePattern",
+          "regexp": "^Steuernachweis$",
+          "property": "subject"
+        }
+      ],
+      "parseFileName": "(?<subject>Steuernachweis)_(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)\\."
     },
     {
       "id": "move-to-axa-yearly-document",
