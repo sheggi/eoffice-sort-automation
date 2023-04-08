@@ -188,6 +188,23 @@
       "parseFileName": "(?<subject>[A-Za-z]+)_(?<portfolio>\\d+)_(?<year>\\d\\d\\d\\d)-(?<month>\\d\\d)-(?<day>\\d\\d)\\."
     },
     {
+      "id": "move-to-swissquote-yearly-document",
+      "name": "Swissquote yearly file automation",
+      "action": {
+        "@type": "MoveToAction",
+        "destination": "%GoogleDrive%/Service/Finanzen/Swissquote/{{year}}/{{name}}"
+      },
+      "version": 1680914739000,
+      "conditions": [
+        {
+          "@type": "FilePattern",
+          "regexp": "^2070638$",
+          "property": "portfolio"
+        }
+      ],
+      "parseFileName": "(?<subject>[A-Za-z]+)_(?<portfolio>\\d+)(_(?<reference>\\d+)_|_)(?<year>\\d\\d\\d\\d)(?<month>\\d\\d)(?<day>\\d\\d)(?<addition>[^.]*)\\."
+    },
+    {
       "id": "test-id",
       "name": "Test automation",
       "action": {
